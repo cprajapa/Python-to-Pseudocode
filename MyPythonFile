@@ -1,0 +1,47 @@
+#See D2L for the assessment breakdown and instructions
+
+import turtle
+import math
+import random
+
+t = turtle.Turtle()
+
+
+def drawHexagon(startPosX, startPosY, sideSize, colour):
+	t.penup()
+	t.setpos(startPosX, startPosY)
+	t.pendown()
+	t.fillcolor(colour)
+	t.begin_fill()
+	for x in range(6):
+			t.forward(sideSize)
+			t.left(60)
+	
+	t.end_fill()
+	
+	newPos = t.position()
+	print("Hexagon Position:" + str(newPos) + "\n")
+
+
+def getNewPos(radius, angleDegree):
+    print("radius: " + str(radius) + ", angle: " + str(angleDegree))
+    t.position()
+    angleRadian = math.radians(angleDegree)
+
+    x = radius * math.cos(angleRadian)
+    y = radius * math.sin(angleRadian)
+
+    return x, y
+
+colourArray = ["red", "green", "orange", "pink", "blue"]
+
+for i in range(30):
+	loopVar = i + 1
+	radius = loopVar * 6
+	angle = 25 * loopVar
+	colourIndex = random.randint(0, 4)
+	sideSize = loopVar * 1.25
+	newCoordinate = getNewPos(radius , angle)
+	print(newCoordinate)
+	print("color: "+str(colourArray[colourIndex]))
+	drawHexagon(newCoordinate[0], newCoordinate[1], sideSize, colourArray[colourIndex])
